@@ -207,10 +207,13 @@ export const deleteLecture = async (req, res) => {
 // }
 
 export const presenceLecture = async (req, res) => {
+    // RESGATA O ID DO USUÁRIO QUE ESTÁ FAZENDO A REQUISIÇÃO
     const tokenUserId = req.userId;
+    // ID DA PALESTRA PASSADA NO URL 
     const id = req.params.id;
   
     try {
+      // VERIFICA SE A PALESTRA EXISTE NO DB 
       const lecture = await prisma.lecture.findUnique({
         where: {
           lectureId: id
@@ -220,22 +223,28 @@ export const presenceLecture = async (req, res) => {
       if (!lecture) {
         return res.status(400).json({ message: 'Credenciais inválidas!' });
       }
-  
+      
+      // VERIFICA SE O USUÁRIO ESTAVA INSCRITO NA PALESTRA
       const lectureEnrollment = await prisma.lectureEnrollment.findUnique({
         where: {
-          lectureId: id,
-          userId: tokenUserId
+          lectureId_userId: {
+            lectureId: id,
+            userId: tokenUserId
+          }
         }
       });
   
       if (!lectureEnrollment) {
         return res.status(401).json({ message: 'Você não estava inscrito na palestra!' });
       }
-  
+      
+      // ATUALIZA O STATUS DO USUÁRIO COMO PRESENTE NA PALESTRA
       await prisma.lectureEnrollment.update({
         where: {
-          lectureId: id,
-          userId: tokenUserId
+          lectureId_userId: {
+            lectureId: id,
+            userId: tokenUserId
+          }
         },
         data: {
           status: 'PRESENT'
@@ -243,8 +252,12 @@ export const presenceLecture = async (req, res) => {
       });
   
       res.status(200).json({ message: 'Presença confirmada com sucesso!' });
+
     } catch (error) {
+
       console.log(error);
       res.status(400).json({ message: 'Falha ao confirmar presença!' });
+      
     }
-  };
+
+}
