@@ -160,3 +160,59 @@ export const deleteMinicourse = async (req, res) => {
     }
 
 }
+
+export const presenceMinicourse = async (req, res) => {
+    // RESGATA O ID DO USUÁRIO QUE ESTÁ FAZENDO A REQUISIÇÃO
+    const tokenUserId = req.userId;
+    // ID DO MINICURSO PASSADA NO URL 
+    const id = req.params.id;
+  
+    try {
+      // VERIFICA SE O MINICURSO EXISTE NO DB 
+      const minicourse = await prisma.minicourse.findUnique({
+        where: {
+          minicourseId: id
+        }
+      });
+  
+      if (!minicourse) {
+        return res.status(400).json({message: 'Credenciais inválidas!'});
+      }
+      
+      // VERIFICA SE O USUÁRIO ESTAVA INSCRITO NA PALESTRA
+      const minicourseEnrollment = await prisma.minicourseEnrollment.findUnique({
+        where: {
+          minicourseId_userId: {
+            minicourseId: id,
+            userId: tokenUserId
+          }
+        }
+      });
+  
+      if (!minicourseEnrollment) {
+        return res.status(401).json({message: 'Você não estava inscrito no minicurso!'});
+      }
+      
+      // ATUALIZA O STATUS DO USUÁRIO COMO PRESENTE NO MINICURSO
+      await prisma.minicourseEnrollment.update({
+        where: {
+          minicourseId_userId: {
+            minicourseId: id,
+            userId: tokenUserId
+          }
+        },
+        data: {
+          status: 'PRESENT'
+        }
+      });
+  
+      res.status(200).json({ message: 'Presença confirmada com sucesso!' });
+
+    } catch (error) {
+
+      console.log(error);
+      res.status(400).json({ message: 'Falha ao confirmar presença!' });
+      
+    }
+
+}

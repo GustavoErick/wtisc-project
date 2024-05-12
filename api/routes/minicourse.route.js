@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { verifyToken } from '../middleware/verifyToken.js';
-import { getMinicourse, getMinicourses, addMinicourse, updateMinicourse, deleteMinicourse } from '../controllers/minicourse.controller.js';
+import { getMinicourse, getMinicourses, addMinicourse, updateMinicourse, deleteMinicourse, presenceMinicourse } from '../controllers/minicourse.controller.js';
 
 const router = express.Router();
 
@@ -21,5 +21,7 @@ router.put('/:id', verifyToken, updateMinicourse);
 
 // DELETA UM MINICURSO ESPECIFICADO POR UM ID
 router.delete('/:id', verifyToken, deleteMinicourse);
+
+router.put('/auth/:id', verifyToken, presenceMinicourse);
 
 export default router;
