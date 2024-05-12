@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId                  String @id @default(auto()) @map("_id") @db.ObjectId
+  name                    String 
+  surname                 String
+  cpf                     String @unique
+  email                   String @unique
+  password                String
+  Role                    Role @default(USER)
+  enrollmentMinicourses   MinicourseEnrollment[]
+  enrollmentLectures      LectureEnrollment[]
+  certificates            Certificate[]
+}
+
+model Minicourse {
+  minicourseId          String @id @default(auto()) @map("_id") @db.ObjectId
+  title                 String
+  description           String
+  prequisites           String
+  instructor            String
+  date                  DateTime
+  time                  String
+  location              String
+  capacity              Int
+  enrollment            MinicourseEnrollment[]
+  enrolled              Int @default(0)
+  materials             String[]
+  ceritificate          Certificate?
+}
+
+model MinicourseEnrollment {
+  enrollmentId         String         @id @default(auto()) @map("_id") @db.ObjectId
+  user                 User           @relation(fields: [userId],    references: [userId])
+  userId               String         @db.ObjectId
+  minicourse           Minicourse     @relation(fields: [minicourseId], references: [minicourseId])
+  minicourseId         String         @db.ObjectId
+  status               Status         @default(ABSENT)
+
+  @@unique([minicourseId, userId])
+}
+
+model Lecture {
+  lectureId             String                @id @default(auto()) @map("_id") @db.ObjectId
+  title                 String   
+  description           String   
+  speaker               String   
+  date                  DateTime 
+  time                  String   
+  location              String
+  capacity              Int
+  enrollment            LectureEnrollment[]
+  enrolled              Int                   @default(0)
+  ceritificate          Certificate?
+}
+
+model LectureEnrollment {
+  enrollmentId          String            @id @default(auto()) @map("_id") @db.ObjectId
+  lecture               Lecture           @relation(fields: [lectureId],   references: [lectureId])
+  lectureId             String            @db.ObjectId
+  user                  User              @relation(fields: [userId],    references: [userId])
+  userId                String            @db.ObjectId
+  status                Status            @default(ABSENT)
+
+  @@unique([lectureId, userId])
+}
+
+model Certificate {
+  certificateId         String                  @id @default(auto()) @map("_id") @db.ObjectId
+  user                  User                    @relation(fields: [userId],    references: [userId])
+  userId                String                  @db.ObjectId
+  Lecture               Lecture                 @relation(fields: [eventId], references: [lectureId])
+  Minicourse            Minicourse              @relation(fields: [eventId], references: [minicourseId])
+  eventId               String                  @db.ObjectId @unique
+}
+
+model Product {
+  productId             String      @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+  price                 Float
+  images                String[]
+  description           String
+}
+
+enum Role {
+  USER 
+  ADMIN
+}
+
+enum Status {
+  PRESENT
+  ABSENT
+}
