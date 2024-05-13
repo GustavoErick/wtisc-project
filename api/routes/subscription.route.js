@@ -8,14 +8,11 @@ router.get('/lectures', verifyToken, getLecuresEnrollment);
 
 router.get('/lectures/:id', verifyToken, getLecureEnrollment);
 
-// RECEBE O ID DA PALESTRA 
 router.post('/lectures/', verifyToken, addLecureEnrollment);
 
 router.put('/lectures/:id', verifyToken, updateLectureEnrollment);
 
 router.delete('/lectures/:id', verifyToken, deleteLectureEnrollment);
-
-//router.post('/lectures/auth/:id', verifyToken, setStatusLectureEnrollment);
 
 router.get('/minicourses', verifyToken, getMinicoursesEnrollment);
 

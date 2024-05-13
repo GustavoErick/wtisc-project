@@ -4,21 +4,22 @@ import { addLecture, deleteLecture, getLecture, getLectures, presenceLecture, up
 
 const router = express.Router();
 
-// RETORNA UMA LISTA DE MINICURSOS
+// RETORNA UMA LISTA DE PALESTRAS
 router.get('/', getLectures);
 
-// RETORNA UM MINICURSO ESPECIFICADO POR UM ID
+// RETORNA UMA PALESTRA ESPECIFICADO POR UM ID
 router.get('/:id', getLecture);
 
-// CRIA UM NOVO MINICURSO
+// CRIA UMA NOVA PALESTRA
 router.post('/', verifyToken, addLecture);
 
-// EDITA UM MINICURSO ESPECIFICADO POR UM ID
+// EDITA UMA PALESTRA ESPECIFICADO POR UM ID
 router.put('/:id', verifyToken, updateLecture);
 
 // DELETA UM MINICURSO ESPECIFICADO POR UM ID
 router.delete('/:id', verifyToken, deleteLecture);
 
+// DECLARA O USUÁRIO COMO PRESENTE NA PALESTRA
 router.put('/auth/:id', verifyToken, presenceLecture);
 
 export default router;

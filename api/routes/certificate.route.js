@@ -5,9 +5,13 @@ import { addCertificate, deleteCertificate, getCertificate, getCertificates, upd
 const router = express.Router();
 
 router.get('/', verifyToken, getCertificates);
+
 router.get('/:id', verifyToken, getCertificate);
+
 router.post('/', verifyToken, addCertificate);
+
 router.put('/:id', verifyToken, updateCertificate);
+
 router.delete('/:id', verifyToken, deleteCertificate);
 
 export default router;

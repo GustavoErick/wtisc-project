@@ -5,8 +5,6 @@ import { getMinicourse, getMinicourses, addMinicourse, updateMinicourse, deleteM
 
 const router = express.Router();
 
-// 
-
 // RETORNA UMA LISTA DE MINICURSOS
 router.get('/', getMinicourses);
 
@@ -22,6 +20,7 @@ router.put('/:id', verifyToken, updateMinicourse);
 // DELETA UM MINICURSO ESPECIFICADO POR UM ID
 router.delete('/:id', verifyToken, deleteMinicourse);
 
+// DECLARA O USUÁRIO COMO PRESENTE NO MINICURSO
 router.put('/auth/:id', verifyToken, presenceMinicourse);
 
 export default router;
