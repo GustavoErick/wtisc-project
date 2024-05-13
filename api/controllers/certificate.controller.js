@@ -54,6 +54,8 @@ export const addCertificate = async (req, res) => {
     const body = req.body;
     const tokenUserId = req.userId;
 
+    //VERIFICA SE O USUÁRIO ESTEVE PRESENTE NO EVENTO
+
     try {
         
         const newCertificate = await prisma.certificate.create({
@@ -122,4 +124,25 @@ export const deleteCertificate = async (req, res) => {
         res.status(400).json({message: 'Erro ao deletar certificado!'});
 
     }
+}
+
+export const issueCertificate = async (req, res) => {
+
+    // ID DO CERTIFICADO PASSADO PELA URL
+    const id = req.params.id;
+
+    // ID DO USUÁRIO DA REQUISIÇAO/USUÁRIO LOGADO 
+    const tokenUserId = req.userId;
+
+    try {
+        
+        // GERA O CERTIFICADO EM PDF 
+
+    } catch (error) {
+        
+        console.log(error);
+        res.status(400).json({message: 'Erro ao emitir certificado!'});
+
+    }
+
 }
