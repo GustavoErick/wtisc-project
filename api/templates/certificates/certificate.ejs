@@ -28,6 +28,6 @@
     </style>
 </head>
 <body>
-    <p class="texto">Certificamos que Gustavo Erick Viana Leandro - 40028922 participou da palestra “Node.js para iniciantes”, em 09/05/2024, com carga horária de 2 horas</p>
+    <p class="texto">Certificamos que <%= user.name %> <%= user.surname %> - <%= user.cpf %> participou do evento “<%= event.title %>”, em <%= event.date %>, com carga horária de <%= event.workload %> horas</p>
 </body>
 </html>

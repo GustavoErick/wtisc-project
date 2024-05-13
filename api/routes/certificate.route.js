@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from '../middleware/verifyToken.js';
-import { addCertificate, deleteCertificate, getCertificate, getCertificates, issueCertificate, updateCertificate } from '../controllers/certificate.controller.js';
+import { addCertificate, deleteCertificate, getCertificate, getCertificates, issueCertificate, updateCertificate, viewCertificate } from '../controllers/certificate.controller.js';
 
 const router = express.Router();
 
@@ -13,6 +13,8 @@ router.post('/', verifyToken, addCertificate);
 router.put('/:id', verifyToken, updateCertificate);
 
 router.delete('/:id', verifyToken, deleteCertificate);
+
+router.get('/view/:id', verifyToken, viewCertificate);
 
 router.get('/issue/:id', verifyToken, issueCertificate);
 

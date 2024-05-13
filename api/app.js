@@ -1,7 +1,8 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import ejs from 'ejs';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 
 import userRoute from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
@@ -13,6 +14,8 @@ import productRoute from './routes/product.route.js';
 import certificateRoute from './routes/certificate.route.js';
 
 const app = express();
+
+app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(cookieParser());

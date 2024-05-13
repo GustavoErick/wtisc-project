@@ -1,4 +1,8 @@
 import prisma from "../lib/prisma.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import ejs from 'ejs';
+import puppeteer from 'puppeteer';
 
 export const getCertificates = async (req, res) => {
 
@@ -181,17 +185,120 @@ export const deleteCertificate = async (req, res) => {
     }
 }
 
+export const viewCertificate = async (req, res) => {
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    const filePath = path.join(__dirname, '../templates/certificates/certificate.ejs');
+
+    // ID DO CERTIFICADO
+    const id = req.params.id;
+
+    // ID DO USUÁRIO DA REQUISICAO
+    const tokenUserId = req.userId;
+
+    try {
+        
+        const certificate = await prisma.certificate.findUnique({
+            where: {
+                certificateId: id
+            }
+        });
+
+        if (!certificate) {
+            return res.status(400).json({message: 'Falha ao visualizar certificado!'});
+        }
+
+        if (tokenUserId !== certificate.userId) {
+            return res.status(401).json({message: 'Usuário não autorizado!'});
+        }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                userId: tokenUserId
+            }
+        });
+
+        let event = {}
+
+        if (certificate.eventType === 'LECTURE') {
+
+            event = await prisma.lecture.findUnique({
+                where: {
+                    lectureId: certificate.eventId
+                }
+            });
+
+        } else {
+
+            event = await prisma.minicourse.findUnique({
+                where: {
+                    minicourseId: certificate.eventId
+                }
+            });
+
+        }
+
+        ejs.renderFile(filePath, {user, event},(err, data) => {
+
+            if (err) {
+
+                console.log(err);
+                return res.send('Erro na leitura do arquivo!');
+
+            }
+        
+            // enviar para o navegador
+            return res.send(data);
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({message: 'Erro ao exibir certificado!'});
+    }
+
+}
+
 export const issueCertificate = async (req, res) => {
 
     // ID DO CERTIFICADO PASSADO PELA URL
     const id = req.params.id;
 
     // ID DO USUÁRIO DA REQUISIÇAO/USUÁRIO LOGADO 
-    const tokenUserId = req.userId;
+    //const tokenUserId = req.userId;
 
     try {
         
         // GERA O CERTIFICADO EM PDF
+
+        // INICIA O NAVEGADOR
+        const browser = await puppeteer.launch();
+
+        // NAVEGADOR ABRE UMA NOVA PÁGINA 
+        const page = await browser.newPage();
+
+        const urlSite = 'http://localhost:8800/certificates/view/' + id;
+
+        // VAI ATÉ A PÁGINA E AGUARDA ELA CARREGAR 
+        await page.goto(urlSite, {
+            waitUntil: 'networkidle0'
+        });
+
+        await page.emulateMediaType('print');
+
+        const pdf = await page.pdf({
+            printBackground: true,
+            format: 'A4',
+            landscape: true
+            
+        });
+
+        await browser.close();
+
+        res.contentType('application/pdf');
+
+        res.send(pdf);
 
     } catch (error) {
         
