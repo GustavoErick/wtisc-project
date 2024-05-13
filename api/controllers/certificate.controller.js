@@ -51,28 +51,83 @@ export const getCertificate = async (req, res) => {
 
 export const addCertificate = async (req, res) => {
 
-    const body = req.body;
+    const { eventType, eventId } = req.body;
+
     const tokenUserId = req.userId;
 
-    //VERIFICA SE O USUÁRIO ESTEVE PRESENTE NO EVENTO
+    let eventEnrollment = {}
 
     try {
-        
+        if (eventType === 'LECTURE') {
+
+            eventEnrollment = await prisma.lectureEnrollment.findUnique({
+                where: {
+                    lectureId_userId: {
+                        lectureId: eventId,
+                        userId: tokenUserId,
+                    },
+                    status: 'PRESENT'
+                }
+            });
+
+        // eventType === MINICOURSE
+        } else {
+
+            eventEnrollment = await prisma.minicourseEnrollment.findUnique({
+                where: {
+                    minicourseId_userId: {
+                        minicourseId: eventId,
+                        userId: tokenUserId,
+                    },
+                    status: 'PRESENT'
+                }
+            });
+
+        } 
+
+        if (!eventEnrollment) {
+            return res.status(400).json({message: 'Usuário não possui inscrição no evento ou não esteve presente!'});
+        }
+
         const newCertificate = await prisma.certificate.create({
             data: {
-                ...body,
+                eventType: eventType,
+                eventId: eventId,
                 userId: tokenUserId
             }
         });
-
+        
         res.status(201).json(newCertificate);
 
     } catch (error) {
         
         console.log(error);
-        res.status(400).json({message: 'Falha ao adicionar certificado!'});
+        res.status(400).json({message: 'Erro ao criar certificado!'});
 
     }
+
+    // const body = req.body;
+    // const tokenUserId = req.userId;
+
+    // //VERIFICA SE O USUÁRIO ESTEVE PRESENTE NO EVENTO
+
+    // try {
+        
+    //     const newCertificate = await prisma.certificate.create({
+    //         data: {
+    //             ...body,
+    //             userId: tokenUserId
+    //         }
+    //     });
+
+    //     res.status(201).json(newCertificate);
+
+    // } catch (error) {
+        
+    //     console.log(error);
+    //     res.status(400).json({message: 'Falha ao adicionar certificado!'});
+
+    // }
 }
 
 export const updateCertificate = async (req, res) => {
@@ -136,7 +191,7 @@ export const issueCertificate = async (req, res) => {
 
     try {
         
-        // GERA O CERTIFICADO EM PDF 
+        // GERA O CERTIFICADO EM PDF
 
     } catch (error) {
         
