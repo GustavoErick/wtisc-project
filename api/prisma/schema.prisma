@@ -74,6 +74,7 @@ model LectureEnrollment {
 
 model Certificate {
   certificateId         String                  @id @default(auto()) @map("_id") @db.ObjectId
+  eventType             Event
   user                  User                    @relation(fields: [userId],    references: [userId])
   userId                String                  @db.ObjectId
   Lecture               Lecture                 @relation(fields: [eventId], references: [lectureId])
@@ -97,4 +98,9 @@ enum Role {
 enum Status {
   PRESENT
   ABSENT
+}
+
+enum Event {
+  LECTURE
+  MINICOURSE
 }
