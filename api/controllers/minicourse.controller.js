@@ -84,8 +84,8 @@ export const addMinicourse = async (req, res) => {
             }
         });
 
-        res.status(201).json({message: 'Minicurso adicionado com sucesso!'});
-        //res.status(201).json(newMinicourse);
+        //res.status(201).json({message: 'Minicurso adicionado com sucesso!'});
+        res.status(201).json(newMinicourse);
 
     } catch (error) {
         

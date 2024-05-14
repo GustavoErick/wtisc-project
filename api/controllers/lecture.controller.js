@@ -56,33 +56,41 @@ export const addLecture = async (req, res) => {
 
 
     // RESGATA OS ATRIBUTOS DA REQUISIÇÃO
-    const { 
-            title, 
-            description,
-            speaker,
-            date,
-            time,
-            location,
-            capacity,
-            certificateTemplate,
-        } = req.body;
+    // const { 
+    //         title, 
+    //         description,
+    //         speaker,
+    //         date,
+    //         time,
+    //         location,
+    //         capacity,
+    //         certificateTemplate,
+    //     } = req.body;
+
+    const body = req.body;
 
     try {
-        const newlecture = await prisma.lecture.create({
-            data: {
-                title, 
-                description,
-                speaker,
-                date,
-                time,
-                location,
-                capacity,
-                certificateTemplate,
-            }
+        // const newlecture = await prisma.lecture.create({
+        //     data: {
+        //         title, 
+        //         description,
+        //         speaker,
+        //         date,
+        //         time,
+        //         location,
+        //         capacity,
+        //         certificateTemplate,
+        //     }
+        // });
+
+        const newLecture = await prisma.lecture.create({
+          data: {
+            ...body
+          }
         });
 
-        //res.status(201).json(newLecture);
-        res.status(201).json({message: 'Palestra adicionada com sucesso!'});
+        res.status(201).json(newLecture);
+        //res.status(201).json({message: 'Palestra adicionada com sucesso!'});
 
     } catch (error) {
         
