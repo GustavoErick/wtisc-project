@@ -30,6 +30,7 @@ model Minicourse {
   time                  String
   location              String
   capacity              Int
+  workload              Int
   enrollment            MinicourseEnrollment[]
   enrolled              Int @default(0)
   materials             String[]
@@ -56,6 +57,7 @@ model Lecture {
   time                  String   
   location              String
   capacity              Int
+  workload              Int
   enrollment            LectureEnrollment[]
   enrolled              Int                   @default(0)
   ceritificate          Certificate?
