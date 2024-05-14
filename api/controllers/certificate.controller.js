@@ -1,6 +1,7 @@
 import prisma from "../lib/prisma.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken';
 import ejs from 'ejs';
 import puppeteer from 'puppeteer';
 
@@ -262,6 +263,9 @@ export const viewCertificate = async (req, res) => {
 
 export const issueCertificate = async (req, res) => {
 
+    // TOKEN DO COOKIE DO USUÁRIO QUE TÁ LOGADO
+    const token = req.cookies.token;
+
     // ID DO CERTIFICADO PASSADO PELA URL
     const id = req.params.id;
 
@@ -269,7 +273,7 @@ export const issueCertificate = async (req, res) => {
     //const tokenUserId = req.userId;
 
     try {
-        
+
         // GERA O CERTIFICADO EM PDF
 
         // INICIA O NAVEGADOR
@@ -278,7 +282,21 @@ export const issueCertificate = async (req, res) => {
         // NAVEGADOR ABRE UMA NOVA PÁGINA 
         const page = await browser.newPage();
 
-        const urlSite = 'http://localhost:8800/certificates/view/' + id;
+        //const urlSite = 'http://localhost:8800/certificates/view/' + id;
+        const urlSite = `http://localhost:8800/certificates/view/${id}`;
+
+
+        const cookie = {
+                name: 'token', // Nome do cookie
+                value: token, // Valor do token JWT
+                domain: 'localhost', // Domínio do cookie
+                path: '/certificates/', // Caminho do cookie
+                httpOnly: true, // Define se o cookie é acessível apenas via HTTP
+                secure: false // Define se o cookie só deve ser enviado através de conexões HTTPS
+            }
+            
+        // Adiciona os cookies ao contexto da página do Puppeteer
+        await page.setCookie(cookie);
 
         // VAI ATÉ A PÁGINA E AGUARDA ELA CARREGAR 
         await page.goto(urlSite, {
