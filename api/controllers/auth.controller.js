@@ -59,16 +59,34 @@ export const login = async(req, res) => {
 
         // GERA UM COOKIE TOKEN E ENVIA PRO USUÁRIO
         const age = 1000 * 60 * 60 * 24 * 7; // UMA SEMANA
+
+        // POR PADRAO isAdmin é falso 
+        let isAdmin = false;
+
+        // se a Role for ADMIN, isAdmin recebe TRUE
+        if (user.Role === 'ADMIN') {
+            isAdmin = true;
+        }
         
+        // PAYLOAD isAdmin RECEBE O BOOLEAN DE isAdmin
         const token = jwt.sign(
             { 
-              //id:user.id,
               id:user.userId,
-              isAdmin: false,
+              isAdmin: isAdmin,
             }, 
             process.env.JWT_SECRET_KEY, 
             { expiresIn: age }
         );
+
+        // const token = jwt.sign(
+        //     { 
+        //       //id:user.id,
+        //       id:user.userId,
+        //       isAdmin: false,
+        //     }, 
+        //     process.env.JWT_SECRET_KEY, 
+        //     { expiresIn: age }
+        // );
 
         
         res.cookie("token", token, {
@@ -80,7 +98,7 @@ export const login = async(req, res) => {
     } catch (error) {
         
         console.log(error);
-        res.status(500).json({message: 'Erro ao realizar login: Este email não possui cadastro!'});
+        res.status(500).json({message: 'Erro ao realizar login!'});
 
     }
     
