@@ -168,51 +168,6 @@ export const deleteLecture = async (req, res) => {
 
 }
 
-// export const presenceLecture = async (req, res) => {
-//     const tokenUserId = req.userId;
-//     const id = req.params.id;
-
-//     try {
-
-//         const lecture = await prisma.lecture.findUnique({
-//             where: {
-//                 lectureId: id
-//             }
-//         });
-
-//         if (!lecture) {
-//             return res.status(400).json({message: 'Credenciais inválidas!'});
-//         }
-
-//         const lectureEnrollment = await prisma.lectureEnrollment.findUnique({
-//             where: {
-//                 lectureId: id,
-//                 userId: tokenUserId
-//             }
-//         });
-
-
-//         if (!lectureEnrollment) {
-//             return res.status(401).json({message: 'Você não estava inscrito na palestra!'});
-//         }
-
-//         await prisma.lectureEnrollment.update({
-//             where: {
-//                 lectureId: id,
-//                 userId: tokenUserId
-//             },
-//             data: {
-//                 status: 'PRESENT'
-//             }
-//         });
-
-//         res.status(200).json({message: 'Presença confirmada com sucesso!'});
-
-//     } catch (error) {
-//         console.log(error);
-//         res.status(400).json({message: 'Falha ao confirmar presença!'});
-//     }   
-// }
 
 export const presenceLecture = async (req, res) => {
     // RESGATA O ID DO USUÁRIO QUE ESTÁ FAZENDO A REQUISIÇÃO

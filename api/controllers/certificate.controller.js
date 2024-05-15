@@ -1,7 +1,6 @@
 import prisma from "../lib/prisma.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
-import jwt from 'jsonwebtoken';
 import ejs from 'ejs';
 import puppeteer from 'puppeteer';
 
@@ -110,29 +109,7 @@ export const addCertificate = async (req, res) => {
         res.status(400).json({message: 'Erro ao criar certificado!'});
 
     }
-
-    // const body = req.body;
-    // const tokenUserId = req.userId;
-
-    // //VERIFICA SE O USUÁRIO ESTEVE PRESENTE NO EVENTO
-
-    // try {
-        
-    //     const newCertificate = await prisma.certificate.create({
-    //         data: {
-    //             ...body,
-    //             userId: tokenUserId
-    //         }
-    //     });
-
-    //     res.status(201).json(newCertificate);
-
-    // } catch (error) {
-        
-    //     console.log(error);
-    //     res.status(400).json({message: 'Falha ao adicionar certificado!'});
-
-    // }
+    
 }
 
 export const updateCertificate = async (req, res) => {
@@ -269,8 +246,6 @@ export const issueCertificate = async (req, res) => {
     // ID DO CERTIFICADO PASSADO PELA URL
     const id = req.params.id;
 
-    // ID DO USUÁRIO DA REQUISIÇAO/USUÁRIO LOGADO 
-    //const tokenUserId = req.userId;
 
     try {
 
@@ -287,15 +262,15 @@ export const issueCertificate = async (req, res) => {
 
 
         const cookie = {
-                name: 'token', // Nome do cookie
-                value: token, // Valor do token JWT
-                domain: 'localhost', // Domínio do cookie
-                path: '/certificates/', // Caminho do cookie
-                httpOnly: true, // Define se o cookie é acessível apenas via HTTP
-                secure: false // Define se o cookie só deve ser enviado através de conexões HTTPS
+                name: 'token', // NOME DO TOKEN
+                value: token, // VALOR DO TOKEN JWT
+                domain: 'localhost', // DOMÍNIO DO COOKIE
+                path: '/certificates/', // CAMINHO DO COOKIE
+                httpOnly: true, // DEFINE SE O COOKIE É ACESSÍVEL APENAS VIA HTTP
+                secure: false // DEFINE SE O COOKIE SÓ DEVE SER ENVIADO ATRA'VES DE CONEXÕES HTTPS
             }
             
-        // Adiciona os cookies ao contexto da página do Puppeteer
+        // ADICIONA OS COOKIES AO CONTEXTO DA PÁGINA DO PUPPETEER
         await page.setCookie(cookie);
 
         // VAI ATÉ A PÁGINA E AGUARDA ELA CARREGAR 

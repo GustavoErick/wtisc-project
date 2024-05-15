@@ -20,7 +20,12 @@ export const shouldBeAdmin = async (req, res) => {
         if (!payload.isAdmin) {
             return res.status(403).json({message: 'Usuário não autorizado!'});
         }
+
+        res.status(200).json({message: 'é admin'});
     });
 
-    res.status(200).json({message: 'Usuário autenticado!'});
+    // req.userId = payload.id;
+
+    // next();
+    
 }

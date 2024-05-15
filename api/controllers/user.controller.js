@@ -49,8 +49,7 @@ export const updateUser = async (req, res) => {
 
     // id da requisição
     const tokenUserId = req.userId;
-    //console.log(tokenUserId);
-    console.log(tokenUserId)
+
     if(id !== tokenUserId) {
         return res.status(403).json({message: 'Usuário não autorizado!'});
     }

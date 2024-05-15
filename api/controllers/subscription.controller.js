@@ -27,12 +27,14 @@ export const getLecuresEnrollment = async (req, res) => {
 export const getLecureEnrollment = async (req, res) => {
 
     const id = req.params.id;
+    const tokenUserId = req.userId;
 
     try {
 
         const lectureEnrollment = await prisma.lectureEnrollment.findUnique({
             where: {
-                enrollmentId: id
+                enrollmentId: id,
+                userId: tokenUserId
             },
             // include: {
             //     user: true
@@ -102,67 +104,6 @@ export const addLecureEnrollment = async (req, res) => {
         res.status(500).json({message: 'Falha ao se inscrever na palestra!'});
     }
 
-    // const tokenUserId = req.userId;
-    // const lectureId = req.params.lectureId;
-
-    // // BUSCA A PALESTRA DA REQUISIÇÃO NO BANCO DE DADOS 
-    // try {
-    //     const lecture = await prisma.lecture.findUnique({
-    //         where: {
-    //             lectureId: lectureId
-    //         }
-    //     });
-
-    //     if (!lecture) {
-    //         return res.status(400).json({message: 'Credenciais inválidas!'});
-    //     }
-
-    //     // VERIFICA SE AINDA HÁ VAGAS NA PALESTRA
-    //     if (!(lecture.enrolled < lecture.capacity)) {
-    //         return res.status().json({message: 'Limite de inscrições na palestra atingido!'});
-    //     }
-
-    //     const newLectureEnrollment = await prisma.lectureEnrollment.create({
-    //         data: {
-    //             lectureId: lecture.lectureId,
-    //             userId: tokenUserId
-    //         }
-    //     });
- 
-    //     await prisma.lecture.update({
-    //         where: {
-    //             lectureId: lectureId
-    //         },
-    //         data: {
-    //             //enrolled: lecture.enrolled + 1
-    //             enrolled: { increment: 1 }
-    //         }
-    //     });
-
-    //     res.status(200).json(newLectureEnrollment);
-
-    // } catch (error) {
-    //     console.log(error);
-    //     res.status(400).json({message: 'Falha ao se inscrever na palestra!'});
-    // }
-
-    // const body = req.body;
-    // const tokenUserId = req.userId;
-
-//     try {
-//         const newLectureEnrollment = await prisma.lectureEnrollment.create({
-//             data: {
-//                 ...body,
-//                 userId: tokenUserId
-//             }
-//         });
-
-//         res.status(200).json(newLectureEnrollment);
-
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({message: 'Fala ao se inscrever na palestra!'});
-//     }
 }
 
 export const updateLectureEnrollment = async (req, res) => {
@@ -295,65 +236,6 @@ export const deleteLectureEnrollment = async (req, res) => {
     // }
 }
 
-// ATUALIZA O STATUS DA INSCRIÇÃO NA PALESTRA POSSIBILITANDO A EMISSAO DO CERTIFICADO
-export const setStatusLectureEnrollment = async (req, res) => {
-    // RESGATA O ID DO URL, SENDO ESTE UM ID DE UMA PALESTRA E NÃO DE UMA INSCRIÇÃO NA PALESTRA
-    const lectureId = req.params.id;
-    // ID DO USUÁRIO DA REQUISIÇÃO
-    const tokenUserId = req.userId;
-
-    // BUSCA A PALESTRA NO DB
-    try {
-        const lecture = await prisma.lecture.findUnique({
-            where: {
-                lectureId: lectureId,
-            }
-        });
-
-        // VERIFICA SE LECTURE É UNDEFINED OU NULL
-        if (!lecture) {
-            return res.status(400).json({message: 'Erro nas credenciais fornecidas!'});
-        }
-
-        // VERIFICA SE O USUÁRIO ESTÁ INSCRITO NA PALESTRA 
-        const lectureEnrollment = await prisma.lectureEnrollment.findUnique({
-            where: {
-                lectureId: lectureId,
-                userId: tokenUserId
-            }
-        });
-
-        // VERIFICA SE O ID DA REQUISICAO É IGUAL AO DA INSCRICÃO
-        // if(lectureEnrollment.userId !== tokenUserId) {
-        //     res.status(403).json({message: 'Usuário não autorizado!'});
-        // }
-
-        if (!lectureEnrollment) {
-            res.status(403).json({message: 'Erro: Você não estava inscrito na palestra!'});
-        }
-
-        // ATUALIZA A PRESENÇA DO USUÁRIO
-        await prisma.lectureEnrollment.update({
-            where: {
-                enrollmentId: lectureEnrollment.enrollmentId
-            },
-            data: {
-                status: 'PRESENT'
-            }
-        });
-
-        res.status(200).json({message: 'Presença confirmada com sucesso!'});
-    
-
-    } catch (error) {
-
-        console.log(error);
-        res.status(400).json({message: 'Erro ao registrar presença!'});
-
-    }
-
-}
-
 // RETORNA TODAS AS INSCRIÇÕES EM MINICURSOS DE TODOS OS USUÁRIOS
 export const getMinicoursesEnrollment = async (req, res) => {
 
@@ -380,12 +262,14 @@ export const getMinicoursesEnrollment = async (req, res) => {
 export const getMinicourseEnrollment = async (req, res) => {
 
     const id = req.params.id;
+    const tokenUserId = req.userId;
 
     try {
 
         const minicourseEnrollment = await prisma.minicourseEnrollment.findUnique({
             where: {
-                enrollmentId: id
+                enrollmentId: id,
+                userId: tokenUserId
             }
         });
 
@@ -405,40 +289,6 @@ export const getMinicourseEnrollment = async (req, res) => {
 
 // CRIA UMA INCRIÇÃO EM UM MINICURSO // INSCREVE O USUÁRIO QUE FEZ A REQUISIÇÃO EM UM MINICURSO
 export const addMinicourseEnrollment = async (req, res) => {
-    
-    // // BUSCA A PALESTRA DA REQUISIÇÃO NO BANCO DE DADOS 
-    // try {
-    //     const lecture = await prisma.lecture.findUnique({
-    //         where: {
-    //             lectureId: lectureId
-    //         }
-    //     });
-
-    //     if (!lecture) {
-    //         return res.status(400).json({message: 'Credenciais inválidas!'});
-    //     }
-
-    //     // VERIFICA SE AINDA HÁ VAGAS NA PALESTRA
-    //     if (!(lecture.enrolled < lecture.capacity)) {
-    //         return res.status().json({message: 'Limite de inscrições na palestra atingido!'});
-    //     }
-
-    //     const newLectureEnrollment = await prisma.lectureEnrollment.create({
-    //         data: {
-    //             lectureId: lecture.lectureId,
-    //             userId: tokenUserId
-    //         }
-    //     });
- 
-    //     await prisma.lecture.update({
-    //         where: {
-    //             lectureId: lectureId
-    //         },
-    //         data: {
-    //             //enrolled: lecture.enrolled + 1
-    //             enrolled: { increment: 1 }
-    //         }
-    //     });
     
     const { minicourseId } = req.body;
 
@@ -484,28 +334,7 @@ export const addMinicourseEnrollment = async (req, res) => {
         console.log(error);
         res.status(500).json({message: 'Falha ao se inscrever no minicurso!'});
     }
-    
 
-
-    //const body = req.body;
-    //const minicourseId = req.params.minicourseId;
-    
-    // const tokenUserId = req.userId;
-
-    // try {
-    //     const newMinicourseEnrollment = await prisma.minicourseEnrollment.create({
-    //         data: {
-    //             ...body,
-    //             userId: tokenUserId
-    //         }
-    //     });
-
-    //     res.status(200).json(newMinicourseEnrollment);
-
-    // } catch (error) {
-    //     console.log(error);
-    //     res.status(500).json({message: 'Falha ao se inscrever no minicurso!'});
-    // }
 }
 
 export const updateMinicourseEnrollment = async (req, res) => {
