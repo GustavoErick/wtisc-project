@@ -5,9 +5,11 @@ import { verifyToken } from '../middleware/verifyToken.js';
 const router = express.Router();
 
 // RETORNA UMA LISTA DE USUÁRIOS
+// PROVAVEL FUNCAO APENAS DE ADMIN
 router.get('/', verifyToken, getUsers);
 
 // RETORNA UM USUÁRIO ESPECIFICADO POR UM ID
+// USUÁRIO COMUM VAI FAZER ISSO?
 router.get('/search/:id', verifyToken, getUser);
 
 // EDITA UM USUÁRIO ESPECIFICADO POR UM ID

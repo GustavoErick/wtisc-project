@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyToken } from '../middleware/verifyToken.js';
+import { verifyAdmin, verifyToken } from '../middleware/verifyToken.js';
 import { addLecture, deleteLecture, getLecture, getLectures, presenceLecture, updateLecture } from '../controllers/lecture.controller.js';
 
 const router = express.Router();
@@ -11,13 +11,13 @@ router.get('/', getLectures);
 router.get('/:id', getLecture);
 
 // CRIA UMA NOVA PALESTRA
-router.post('/', verifyToken, addLecture);
+router.post('/', verifyAdmin, addLecture);
 
 // EDITA UMA PALESTRA ESPECIFICADO POR UM ID
-router.put('/:id', verifyToken, updateLecture);
+router.put('/:id', verifyAdmin, updateLecture);
 
 // DELETA UM MINICURSO ESPECIFICADO POR UM ID
-router.delete('/:id', verifyToken, deleteLecture);
+router.delete('/:id', verifyAdmin, deleteLecture);
 
 // DECLARA O USUÁRIO COMO PRESENTE NA PALESTRA
 router.put('/auth/:id', verifyToken, presenceLecture);
