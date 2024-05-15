@@ -28,6 +28,6 @@
     </style>
 </head>
 <body>
-    <p class="texto">Certificamos que <%= user.name %> <%= user.surname %> - <%= user.cpf %> participou do evento “<%= event.title %>”, em <%= event.date %>, com carga horária de <%= event.workload %> horas</p>
+    <p class="texto">Certificamos que <%= user.name %> <%= user.surname %> - <%= user.cpf %> participou do evento “<%= event.title %>”, em <%= event.date.toLocaleDateString() %>, com carga horária de <%= event.workload %> horas</p>
 </body>
 </html>
