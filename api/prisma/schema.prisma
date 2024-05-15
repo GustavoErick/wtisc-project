@@ -34,7 +34,7 @@ model Minicourse {
   enrollment            MinicourseEnrollment[]
   enrolled              Int @default(0)
   materials             String[]
-  ceritificate          Certificate?
+  ceritificate          Certificate[]
 }
 
 model MinicourseEnrollment {
@@ -60,7 +60,7 @@ model Lecture {
   workload              Int
   enrollment            LectureEnrollment[]
   enrolled              Int                   @default(0)
-  ceritificate          Certificate?
+  ceritificate          Certificate[]
 }
 
 model LectureEnrollment {
@@ -81,7 +81,9 @@ model Certificate {
   userId                String                  @db.ObjectId
   Lecture               Lecture                 @relation(fields: [eventId], references: [lectureId])
   Minicourse            Minicourse              @relation(fields: [eventId], references: [minicourseId])
-  eventId               String                  @db.ObjectId @unique
+  eventId               String                  @db.ObjectId 
+
+  @@unique([userId, eventId])
 }
 
 model Product {
