@@ -18,13 +18,15 @@
 ![visual_studio_code][VISUAL_STUDIO_CODE]
 
 <p align="center">
- <a href="#started">Getting Started</a> •
+  <a href="#started">Getting Started</a> •
   <a href="#routes">API Endpoints</a> •
- <a href="#colab">Collaborators</a> •
- <a href="#contribute">Contribute</a>
+  <a href="#colab">Collaborators</a> •
+  <a href="prerequisites">Prerequisites</a> •
+  <a href="#contribute">Contribute</a>
+  
 </p>
 
-## Descrição por trás do site 😎
+## Por trás do site 👀
 
 *Seção dedicada para explicar o back do site*
 
@@ -32,7 +34,7 @@
 
 *Descrever como rodar o projeto na máquina local*
 
-<h3>Prerequisites</h3>
+<h2 id="prerequisites">🗂️ Prerequisites</h2>
 
 Abaixo estão listados os pre-requisitos para conseguir executar o sistema na máquina loca:
 
@@ -40,7 +42,7 @@ Abaixo estão listados os pre-requisitos para conseguir executar o sistema na m�
 - **IDE** de sua preferência, recomendado o [Visual Studio Code](https://code.visualstudio.com/)
 - [Prisma](https://www.prisma.io/)
 
-<h3>Cloning</h3>
+### Clonando
 
 How to clone your project
 
