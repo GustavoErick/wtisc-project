@@ -28,7 +28,7 @@
 
 ## Por trás do site 👀
 
-*Seção dedicada para explicar o back do site*
+*Seção dedicada para explicar o backend do site*
 
 <h2 id="started">🚀 Getting started</h2>
 
