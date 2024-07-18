@@ -99,6 +99,7 @@ export const deleteUser = async (req, res) => {
     }
 
     try {
+        res.clearCookie('token');
         await prisma.user.delete({
             where: {
                 userId: id,
@@ -106,6 +107,7 @@ export const deleteUser = async (req, res) => {
         });
 
         res.status(200).json({message: 'Usuário deletado com sucesso!'});
+        
 
     } catch (error) {
 
