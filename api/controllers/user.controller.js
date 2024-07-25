@@ -3,7 +3,16 @@ import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {
     try {
-        const users = await prisma.user.findMany();
+        const users = await prisma.user.findMany({
+            select: {
+                userId: true,
+                name: true,
+                surname: true,
+                cpf: true,
+                Role: true,
+                password: false,
+            }
+        });
 
         if(!users) {
             return res.status(400).json({message: 'Erro ao buscar usuários: Nenhum usuário cadastrado!'});
@@ -26,6 +35,14 @@ export const getUser = async (req, res) => {
         const user = await prisma.user.findUnique({
             where: {
                 userId: id,
+            },
+            select: {
+                userId: true,
+                name: true,
+                surname: true,
+                cpf: true,
+                Role: true,
+                password: false,
             }
         });
 
