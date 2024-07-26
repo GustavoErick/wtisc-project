@@ -97,6 +97,14 @@ export const updateUser = async (req, res) => {
                 ...inputs,
                 // se a nova senha não for nula, se espalhará para o objeto senha
                 ...(updatedPassword && {password: updatedPassword}),
+            },
+            select: {
+                userId: true,
+                name: true,
+                surname: true,
+                cpf: true,
+                Role: true,
+                password: false,
             }
         });
 
