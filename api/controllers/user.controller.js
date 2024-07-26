@@ -74,12 +74,12 @@ export const updateUser = async (req, res) => {
     // separando a senha e a role dos demais parâmetros
     const {password, Role, ...inputs} = req.body;
 
-    try {
+    // se o usuário deseja alterar sua Role, ele tem acesso negado
+    if (Role) {
+        return res.status(403).json(({message: 'Falha ao atualizar usuário!'}));
+    }
 
-        // se o usuário deseja alterar sua Role, ele tem acesso negado
-        if (Role) {
-            return res.status(403).json(({message: 'Falha ao atualizar usuário!'}));
-        }
+    try {
 
         let updatedPassword = null;
 
