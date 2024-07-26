@@ -71,10 +71,15 @@ export const updateUser = async (req, res) => {
         return res.status(403).json({message: 'Usuário não autorizado!'});
     }
 
-    // separando a senha dos demais parâmetros
-    const {password,...inputs} = req.body;
+    // separando a senha e a role dos demais parâmetros
+    const {password, Role, ...inputs} = req.body;
 
     try {
+
+        // se o usuário deseja alterar sua Role, ele tem acesso negado
+        if (Role) {
+            return res.status(403).json(({message: 'Falha ao atualizar usuário!'}));
+        }
 
         let updatedPassword = null;
 
