@@ -28,7 +28,7 @@ Um site para o **WTISC** contendo informações sobre o evento, inscrição em *
 - Documentação: PDF, Markdow
 - Versionamento de código: Git e Github
 
-<h2 id="guides"></h2>
+<h2 id="guides">📚 Guides</h2>
 
 Abaixo se encontram os guias/documentações de como o backend e o frontend da aplicação funcionam:
 
