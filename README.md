@@ -7,7 +7,6 @@
     <a href="problem">Problem</a> •
     <a href="solution">Solution</a> •
     <a href="technology">Technology</a> •
-    <a href="colab">Collaborators</a> •
     <a href="guides">Guides</a>
 </p>
 
