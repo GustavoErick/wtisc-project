@@ -23,7 +23,7 @@
   <a href="#started">Instalando e Executando</a> • 
   <a href="prerequisites">Pré-requisitos</a> •
   <a href="#testando">API Endpoints</a> •
-  <a href="#colab">Collaborators</a> 
+  <a href="#colab">Colaboradores</a> 
 </p>
 
 ## Sobre o WTISC 
