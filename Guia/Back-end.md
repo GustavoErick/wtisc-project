@@ -83,9 +83,10 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 - **Postman**: Utilizado para testar e documentar as APIs.
 
 <h2 id="prerequisites"> Pré-requisitos</h2>
-- Node.js
-- NPM 
-- MongoDB (ou acesso ao MongoDB Atlas)
+
+- **Node.js**
+- **NPM**
+- **MongoDB** (ou acesso ao MongoDB Atlas)
 
 <h2 id="started"> Instalando e Executando</h2>
 
