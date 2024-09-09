@@ -26,14 +26,20 @@
   
 </p>
 
-## Por trás do site 👀
+## Sobre o WTISC 
 
 *Seção dedicada para explicar o backend do site*
 
 <h2 id="started">🚀 Getting started</h2>
 
-*Descrever como rodar o projeto na máquina local*
-
+Primeiramente deve-se instalar todas as dependências do projeto:
+```bash
+npm install
+```
+Após isso, podemos gerar o client do Prisma a partir do schema definido no arquivo schema.prisma:
+```bash
+npx prisma generate
+```
 <h2 id="prerequisites">🗂️ Prerequisites</h2>
 
 Abaixo estão listados os pre-requisitos para conseguir executar o sistema na máquina loca:
@@ -47,7 +53,7 @@ Abaixo estão listados os pre-requisitos para conseguir executar o sistema na m�
 How to clone your project
 
 ```bash
-git clone your-project-url-in-github
+git clone https://github.com/GustavoErick/wtisc-project.git
 ```
 
 <h3> Environment Variables</h2>
@@ -65,8 +71,8 @@ aws.secretKey={YOUR_AWS_SECRET}
 How to start your project
 
 ```bash
-cd project-name
-npm some-command-to-run
+cd api
+npm run dev
 ```
 
 <h2 id="routes">📍 API Endpoints</h2>
@@ -141,18 +147,3 @@ Special thank you for all people that contributed for this project.
     </td>
   </tr>
 </table>
-
-<h2 id="contribute">📫 Contribute</h2>
-
-Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request
-
-1. `git clone https://github.com/Fernanda-Kipper/text-editor.git`
-2. `git checkout -b feature/NAME`
-3. Follow commit patterns
-4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
-
-<h3>Documentations that might help</h3>
-
-[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
-
-[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
