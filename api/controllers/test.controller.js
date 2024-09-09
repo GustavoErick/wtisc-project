@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export const shouldBeLoggedIn = async (req, res) => {
     //console.log(req.userId);
-    res.status(200).json({message: 'Usuário autenticado!'});
+    res.status(200).json({message: 'Usuário autenticado!'}); 
 }
 
 export const shouldBeAdmin = async (req, res) => {
@@ -24,8 +24,5 @@ export const shouldBeAdmin = async (req, res) => {
         res.status(200).json({message: 'é admin'});
     });
 
-    // req.userId = payload.id;
-
-    // next();
     
 }

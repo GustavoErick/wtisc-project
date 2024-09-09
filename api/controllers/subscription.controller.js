@@ -182,58 +182,6 @@ export const deleteLectureEnrollment = async (req, res) => {
         console.log(error);
         res.status(400).json({message: 'Falha ao deletar inscrição!'});
     }
-
-    // // ID DA URL
-    // const id = req.params.id;
-    // // ID DO USUÁRIO QUE ESTÁ FAZENDO A REQUISIÇÃO
-    // const tokenUserId = req.userId;
-
-    // try {
-
-    //     const lectureEnrollment = await prisma.lectureEnrollment.findUnique({
-    //         where: {
-    //             enrollmentId: id,
-    //             userId: tokenUserId
-    //         }
-    //     });
-
-    //     // VERIFICA SE O USUÁRIO QUE ESTÁ TENTANDO DELETAR É O USUÁRIO DA INSCRIÇÃO
-    //     // if (lectureEnrollment.userId !== tokenUserId) {
-    //     //     return res.status(403).json({message: 'Usuário não autorizado!'});
-    //     // }
-
-    //     if (!lectureEnrollment) {
-    //         return res.status(400).json({message: 'Credenciais inválidas!'});
-    //     }
-        
-    //     const lectureId = lectureEnrollment.lectureId;
-
-    //     await prisma.lectureEnrollment.delete({
-    //         where: {
-    //             enrollmentId: id,
-    //             userId: tokenUserId
-    //         }
-    //     });
-
-    //     //console.log(lectureId);
-    //     await prisma.lecture.update({
-    //         where: {
-    //             lectureId: lectureId
-    //         },
-
-    //         data: {
-    //             enrolled: { increment: -1 }
-    //         }
-    //     });
-
-    //     res.status(200).json({message: 'Inscrição na palestra deletada com sucesso!'});
-        
-    // } catch (error) {
-
-    //     console.log(error);
-    //     res.status(400).json({message: 'Erro ao deletar inscrição na palestra!'});
-
-    // }
 }
 
 // RETORNA TODAS AS INSCRIÇÕES EM MINICURSOS DE TODOS OS USUÁRIOS
@@ -408,12 +356,6 @@ export const deleteMinicourseEnrollment = async (req, res) => {
 
         const minicourseId = minicourseEnrollment.minicourseId;
 
-        // const minicourse = await prisma.minicourse.findUnique({
-        //     where: {
-        //         minicourseId: minicourseId
-        //     }
-        // });
-
         await prisma.minicourse.update({
             where: {
                 minicourseId: minicourseId
@@ -430,13 +372,6 @@ export const deleteMinicourseEnrollment = async (req, res) => {
                 enrollmentId: id,
             }
         });
-        
-        // await prisma.minicourseEnrollment.delete({
-        //     where: {
-        //         enrollmentId: id,
-        //         userId: tokenUserId
-        //     }
-        // });
 
         res.status(200).json({message: 'Inscrição no minicurso deletada com sucesso!'});
         
