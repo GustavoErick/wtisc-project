@@ -18,12 +18,12 @@
 ![visual_studio_code][VISUAL_STUDIO_CODE]
 
 <p align="center">
-  <a href="#started">Getting Started</a> •
-  <a href="#routes">API Endpoints</a> •
-  <a href="#colab">Collaborators</a> •
-  <a href="prerequisites">Prerequisites</a> •
-  <a href="#contribute">Contribute</a>
-  
+  <a href="#tecnologias">Tecnologias Utilizadas</a> •
+  <a href="#ferramentas">Ferramentas Utilizadas</a> •
+  <a href="#started">Instalando e Executando</a> • 
+  <a href="prerequisites">Pré-requisitos</a> •
+  <a href="#testando">API Endpoints</a> •
+  <a href="#colab">Collaborators</a> 
 </p>
 
 ## Sobre o WTISC 
@@ -49,7 +49,8 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 - Emissão de certificados
 - Criação e gerenciamento de produtos
 
-## Tecnologias Utilizadas
+
+<h2 id="tecnologias"> Tecnologias Utilizadas</h2>
 
 ### 1. Backend
 - **Node.js**: Plataforma de execução de código JavaScript no servidor.
@@ -77,15 +78,15 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 - **Puppeteer**: Biblioteca para controle de navegadores via código.
 - **Nodemon**: Ferramenta para reiniciar o servidor automaticamente em desenvolvimento.
 
-## Ferramentas utilizadas:
+<h2 id="ferramentas"> Ferramentas Utilizadas</h2>
 - **Postman**: Utilizado para testar e documentar as APIs.
 
-## Pré-requisitos
+<h2 id="prerequisites"> Pré-requisitos</h2>
 - Node.js
 - NPM 
 - MongoDB (ou acesso ao MongoDB Atlas)
 
-<h2 id="started"> Instalando e executando</h2>
+<h2 id="started"> Instalando e Executando</h2>
 
 Clone o repositório:
 ```bash
@@ -111,7 +112,7 @@ Agora para execute o servidor:
 ```bash
 npm run dev
 ```
-## Testando a API com Postman
+<h2 id="testando"> Testando a API com Postman</h2>
 
 Após configurar e rodar o projeto, você pode testar as rotas da API utilizando o Postman. Siga os passos abaixo:
 
@@ -121,7 +122,7 @@ Após configurar e rodar o projeto, você pode testar as rotas da API utilizando
 ​
 ###  API Endpoints
 
-Aqui você encontra uma lista das principais rotas da API e o que cada uma faz:
+Aqui você encontra uma lista de algumas rotas da API e o que cada uma faz:
 
 | Rota | Descrição |
 |-------------------------------|-------------------------------------------------------------|
