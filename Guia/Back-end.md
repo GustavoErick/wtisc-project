@@ -28,50 +28,77 @@
 
 ## Sobre o WTISC 
 
-*Seção dedicada para explicar o backend do site*
+Workshop de Tecnologia da Informação do Sertão Central (WTISC) é um evento da Universidade Federal do Ceará Campus Quixadá, realizado anualmente no primeiro semestre do ano, pelo grupo PET – Sistemas de Informação.
 
-<h2 id="started">🚀 Getting started</h2>
+O objetivo do evento é promover e difundir o conhecimento sobre as diversas áreas de Tecnologia da Informação, de forma a fortalecer e motivar a formação técnico-profissional, por meio da troca de experiências entre profissionais e acadêmicos.
 
-Primeiramente deve-se instalar todas as dependências do projeto:
+O WTISC é evento público realizado desde 2008, e consiste na oferta de palestras e minicursos. Buscando apresentar aos alunos/participantes um pouco da realidade do mercado de trabalho.
+
+Nas palestras, os profissionais contam sua experiência profissional e temas acadêmicos: área de atuação, dicas para se tornar um bom profissional, tecnologias utilizadas, além de diversos temas tecnológicos.
+
+Nos minicursos, são apresentados aos alunos/participantes várias técnicas e ferramentas utilizadas em diversas áreas de atuação no mercado e na academia.
+
+## Status do Projeto
+
+🚧 Em desenvolvimento 🚧
+
+## Principais Funcionalidades
+
+- Gerenciamento de usuários
+- Inscrição em minicursos e palestras
+- Emissão de certificados
+- Criação e gerenciamento de produtos
+
+## Tecnologias Utilizadas
+
+### 1. Backend
+- **Node.js**: Plataforma de execução de código JavaScript no servidor.
+- **Express**: Framework para criação de APIs e servidores HTTP.
+
+### 2. Banco de Dados
+- **Prisma**: ORM para manipulação do banco de dados.
+- **@prisma/client**: Cliente gerado automaticamente pelo Prisma para interação com o banco de dados.
+
+### 3. Segurança
+- **bcrypt**: Biblioteca para criptografia de senhas.
+- **jsonwebtoken**: Implementação de JWT para autenticação segura.
+
+### 4. Templates e Renderização
+- **EJS (Embedded JavaScript)**: Motor de templates para renderizar HTML a partir de JavaScript.
+
+### 5. Utilitários
+- **dotenv**: Carrega variáveis de ambiente a partir de um arquivo `.env`.
+- **cookie-parser**: Middleware para parsing de cookies nas requisições HTTP.
+
+### 6. Automação 
+- **Puppeteer**: Biblioteca para controle de navegadores via código.
+- **Nodemon**: Ferramenta para reiniciar o servidor automaticamente em desenvolvimento.
+
+
+<h2 id="started"> Instalando e executando</h2>
+
+Clone o repositório:
+```bash
+git clone https://github.com/GustavoErick/wtisc-project.git
+```
+Entre no diretório do projeto:
+```bash
+cd api
+```
 ```bash
 npm install
+```
+Ajueste as variáveis de ambiente. Use o .env.properties.example como referência para criar seu arquivo de configuração .env com suas credenciais de conexão com o banco de dados e chave secreta JWT
+```yaml
+DATABASE_URL={Sua URL de conexão ao banco de dados}
+JWT_SECRET_KEY={Sua chave secreta JWT}
 ```
 Após isso, podemos gerar o client do Prisma a partir do schema definido no arquivo schema.prisma:
 ```bash
 npx prisma generate
 ```
-<h2 id="prerequisites">🗂️ Prerequisites</h2>
-
-Abaixo estão listados os pre-requisitos para conseguir executar o sistema na máquina loca:
-
-- [NodeJS](https://nodejs.org/en/download/package-manager)
-- **IDE** de sua preferência, recomendado o [Visual Studio Code](https://code.visualstudio.com/)
-- [Prisma](https://www.prisma.io/)
-
-### Clonando
-
-How to clone your project
-
+Agora para execute o servidor:
 ```bash
-git clone https://github.com/GustavoErick/wtisc-project.git
-```
-
-<h3> Environment Variables</h2>
-
-Use the `application.properties.example` as reference to create your configuration file `application.properties` with your AWS Credentials
-
-```yaml
-aws.region=us-east-1
-aws.accessKeyId={YOUR_AWS_KEY_ID}
-aws.secretKey={YOUR_AWS_SECRET}
-```
-
-<h3>Starting</h3>
-
-How to start your project
-
-```bash
-cd api
 npm run dev
 ```
 
