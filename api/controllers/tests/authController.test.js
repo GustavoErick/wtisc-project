@@ -109,7 +109,7 @@ describe('login', () => {
     });
 
     it('deve retornar erro se a senha estiver incorreta', async () => {
-        const mockUser = {
+        const mockUser = { 
             cpf: '12345678900',
             password: 'hashedpassword',
         };

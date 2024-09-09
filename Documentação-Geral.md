@@ -32,5 +32,5 @@ Um site para o **WTISC** contendo informações sobre o evento, inscrição em *
 
 Abaixo se encontram os guias/documentações de como o backend e o frontend da aplicação funcionam:
 
-- [Backend](https://github.com/GustavoErick/wtisc-project/blob/main/Guias/back-end.md)
+- [Backend](https://github.com/GustavoErick/wtisc-project/blob/main/Back-end.md)
 - [Frontend]()

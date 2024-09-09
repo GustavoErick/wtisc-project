@@ -24,9 +24,7 @@ export const getMinicourse = async (req, res) => {
           res.status(500).json({message: 'Falha ao buscar minicurso!'})
   
       }
-
 }
-
 export const getMinicourses = async (req, res) => {
 
     try {
@@ -45,41 +43,14 @@ export const getMinicourses = async (req, res) => {
         res.status(500).json({message: 'Falha ao buscar minicursos!'});
 
     }
-    
-
 }
-
 export const addMinicourse = async (req, res) => {
-
-    // VERIFICA SE O USUÁRIO É UM ADMIN
-
-    // RESGATA OS ATRIBUTOS DA REQUISIÇÃO
-    // const { 
-    //         title, 
-    //         description,
-    //         prequisites,
-    //         instructor,
-    //         date,
-    //         time,
-    //         local,
-    //         capacity,
-    //         certificateTemplate,
-    //     } = req.body;
 
     const body = req.body;
 
     try {
         const newMinicourse = await prisma.minicourse.create({
             data: {
-                // title, 
-                // description,
-                // prequisites,
-                // instructor,
-                // date,
-                // time,
-                // local,
-                // capacity,
-                // certificateTemplate,
                 ...body
             }
         });
@@ -98,18 +69,6 @@ export const addMinicourse = async (req, res) => {
 
 export const updateMinicourse = async (req, res) => {
     const id = req.params.id;
-
-    // const { 
-    //     title, 
-    //     description,
-    //     prequisites,
-    //     instructor,
-    //     date,
-    //     time,
-    //     local,
-    //     capacity,
-    //     certificateTemplate,
-    // } = req.body;
 
     // PEGA TODOS OS INPUTS DA REQUISIÇÃO
     const {... inputs} = req.body;
@@ -212,7 +171,7 @@ export const presenceMinicourse = async (req, res) => {
 
       console.log(error);
       res.status(400).json({ message: 'Falha ao confirmar presença!' });
-      
+    
     }
 
 }
