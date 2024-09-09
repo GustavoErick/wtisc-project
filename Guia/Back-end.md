@@ -70,10 +70,20 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 - **dotenv**: Carrega variáveis de ambiente a partir de um arquivo `.env`.
 - **cookie-parser**: Middleware para parsing de cookies nas requisições HTTP.
 
-### 6. Automação 
+### 6. Testes
+- **Jest**: Framework de testes em JavaScript para validação das funcionalidades do projeto.
+
+### 7. Automação 
 - **Puppeteer**: Biblioteca para controle de navegadores via código.
 - **Nodemon**: Ferramenta para reiniciar o servidor automaticamente em desenvolvimento.
 
+## Ferramentas utilizadas:
+- **Postman**: Utilizado para testar e documentar as APIs.
+
+## Pré-requisitos
+- Node.js
+- NPM 
+- MongoDB (ou acesso ao MongoDB Atlas)
 
 <h2 id="started"> Instalando e executando</h2>
 
@@ -101,36 +111,35 @@ Agora para execute o servidor:
 ```bash
 npm run dev
 ```
+## Testando a API com Postman
 
+Após configurar e rodar o projeto, você pode testar as rotas da API utilizando o Postman. Siga os passos abaixo:
+
+1. **Instale o Postman**: Caso ainda não tenha, baixe e instale o [Postman](https://www.postman.com/downloads/).
+2. **Crie uma nova coleção**: No Postman, crie uma nova coleção para agrupar as requisições.
+3. **Adicione as requisições que deseja testar usando a URL http://localhost:8800**:
 <h2 id="routes">📍 API Endpoints</h2>
-
-Here you can list the main routes of your API, and what are their expected request bodies.
 ​
 | route | description
 |----------------------|-----------------------------------------------------
-| <kbd>GET /authenticate</kbd> | retrieves user info see [response details](#get-auth-detail)
-| <kbd>POST /authenticate</kbd> | authenticate user into the api see [request details](#post-auth-detail)
+| <kbd>POST /auth/register</kbd> | registra um usuário [detalhes de registro](#post-register-detail)
+| <kbd>POST /auth/login</kbd> | realiza o login/autentica o usuário [detalhes de login](#post-login-detail)
+| <kbd>UPDATE /users/6643fcfdbf78a93ed89008cd</kbd> | atualiza dados do usuário [datalhes de atualização](#update-user-detail)
+| <kbd>GET /minicourses</kbd> | retorna todos os minicursos [detalhes do minicurso](#get-minicourses-detail)
+| <kbd>POST /subscriptions/minicourses/</kbd> | se inscreve em um minicurso [detalhes da inscrição](#post-subscriptions-detail)
+| <kbd>DELETE /subscriptions/minicourses/66a98e1dd4ec13c270ad4b74</kbd> | deleta uma inscrição [detalhes da inscrição deletada](#delete-subscriptions-detail)
 
-<h3 id="get-auth-detail">GET /authenticate</h3>
-
-**RESPONSE**
-
-```json
-{
-  "name": "Fernanda Kipper",
-  "age": 20,
-  "email": "her-email@gmail.com"
-}
-```
-
-<h3 id="post-auth-detail">POST /authenticate</h3>
+<h3 id="post-register-detail">POST /auth/register</h3>
 
 **REQUEST**
 
 ```json
 {
-  "username": "fernandakipper",
-  "password": "4444444"
+    "name": "Antonio",
+    "surname": "Mágico da Silva",
+    "cpf": "121212",
+    "email": "ontoin@email.com",
+    "password": "cubomagico123"
 }
 ```
 
@@ -138,37 +147,145 @@ Here you can list the main routes of your API, and what are their expected reque
 
 ```json
 {
-  "token": "OwoMRHsaQwyAgVoc3OXmL1JhMVUYXGGBbCTK0GBgiYitwQwjf0gVoBmkbuyy0pSi"
+  {"message": "Usuário criado com sucesso!"}
 }
 ```
 
-<h2 id="colab">🤝 Collaborators</h2>
+<h3 id="post-login-detail">POST /auth/login</h3>
 
-Special thank you for all people that contributed for this project.
+**REQUEST**
+
+```json
+{
+    "cpf": "121212",
+    "password": "cubomagico123"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+    "message": "Login efetuado com sucesso!"
+}
+```
+
+<h3 id="update-user-detail">UPDATE /users/6643fcfdbf78a93ed89008cd</h3>
+
+**REQUEST**
+
+```json
+{
+    "name": "Anthony"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+    "userId": "6643fcfdbf78a93ed89008cd",
+    "name": "Anthony",
+    "surname": "Mágico da Silva",
+    "cpf": "121212",
+    "Role": "USER"
+}
+```
+
+<h3 id="get-minicourses-detail">GET /minicourses</h3>
+
+**RESPONSE**
+
+```json
+{
+        "minicourseId": "6642ae53d0d0d582ca8a6448",
+        "title": "Node.js para iniciantes",
+        "description": "Aqui você aprenderá o básico de Node.js!",
+        "prequisites": "Javascript básico",
+        "instructor": "Regis Pires",
+        "date": "2024-08-31T15:00:00.000Z",
+        "time": "15:00",
+        "location": "Auditório",
+        "capacity": 60,
+        "workload": 2,
+        "enrolled": 4
+    }
+```
+
+<h3 id="post-subscriptions-detail">POST /subscriptions/minicourses/</h3>
+
+**REQUEST**
+
+```json
+{
+    "minicourseId": "6642ae53d0d0d582ca8a6448"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+    "enrollmentId": "66a98e1dd4ec13c270ad4b74",
+    "userId": "6643fcfdbf78a93ed89008cd",
+    "minicourseId": "6642ae53d0d0d582ca8a6448",
+    "status": "ABSENT"
+}
+```
+
+<h3 id="delete-subscriptions-detail">DELETE /minicourses/subscriptions/minicourses/66a98e1dd4ec13c270ad4b74</h3>
+
+**RESPONSE**
+
+```json
+{
+    "message": "Inscrição no minicurso deletada com sucesso!"
+}
+```
+
+<h2 id="colab">🤝 Colaboradores</h2>
+
+Agradecimento especial a todos aqueles que contribuíram com este projeto!
 
 <table>
   <tr>
     <td align="center">
       <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/61896274?v=4" width="100px;" alt="Fernanda Kipper Profile Picture"/><br>
+        <img src="https://avatars.githubusercontent.com/u/105515712?v=4" width="100px;" alt="Gustavo Erick Profile Picture"/><br>
         <sub>
-          <b>Fernanda Kipper</b>
+          <b>Gustavo Erick</b>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="https://t.ctcdn.com.br/n7eZ74KAcU3iYwnQ89-ul9txVxc=/400x400/smart/filters:format(webp)/i490769.jpeg" width="100px;" alt="Elon Musk Picture"/><br>
+        <img src="https://avatars.githubusercontent.com/u/105880814?v=4" width="100px;" alt="Beatriz Nascimento Picture"/><br>
         <sub>
-          <b>Elon Musk</b>
+          <b>Beatriz Nascimento</b>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://avatars.githubusercontent.com/u/101434230?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
         <sub>
-          <b>Steve Jobs</b>
+          <b>Samuel Nascimento</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/101982315?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <sub>
+          <b>Elysson Alves</b>
+        </sub>
+      </a>
+    </td>
+        <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/85910011?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <sub>
+          <b>Danilo Gomes</b>
         </sub>
       </a>
     </td>
