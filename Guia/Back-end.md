@@ -79,6 +79,7 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 - **Nodemon**: Ferramenta para reiniciar o servidor automaticamente em desenvolvimento.
 
 <h2 id="ferramentas"> Ferramentas Utilizadas</h2>
+
 - **Postman**: Utilizado para testar e documentar as APIs.
 
 <h2 id="prerequisites"> Pré-requisitos</h2>
