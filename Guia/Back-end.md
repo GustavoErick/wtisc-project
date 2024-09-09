@@ -118,16 +118,20 @@ Após configurar e rodar o projeto, você pode testar as rotas da API utilizando
 1. **Instale o Postman**: Caso ainda não tenha, baixe e instale o [Postman](https://www.postman.com/downloads/).
 2. **Crie uma nova coleção**: No Postman, crie uma nova coleção para agrupar as requisições.
 3. **Adicione as requisições que deseja testar usando a URL http://localhost:8800**:
-<h2 id="routes">📍 API Endpoints</h2>
 ​
-| route | description
-|----------------------|-----------------------------------------------------
-| <kbd>POST /auth/register</kbd> | registra um usuário [detalhes de registro](#post-register-detail)
-| <kbd>POST /auth/login</kbd> | realiza o login/autentica o usuário [detalhes de login](#post-login-detail)
-| <kbd>UPDATE /users/6643fcfdbf78a93ed89008cd</kbd> | atualiza dados do usuário [datalhes de atualização](#update-user-detail)
-| <kbd>GET /minicourses</kbd> | retorna todos os minicursos [detalhes do minicurso](#get-minicourses-detail)
-| <kbd>POST /subscriptions/minicourses/</kbd> | se inscreve em um minicurso [detalhes da inscrição](#post-subscriptions-detail)
-| <kbd>DELETE /subscriptions/minicourses/66a98e1dd4ec13c270ad4b74</kbd> | deleta uma inscrição [detalhes da inscrição deletada](#delete-subscriptions-detail)
+###  API Endpoints
+
+Aqui você encontra uma lista das principais rotas da API e o que cada uma faz:
+
+| Rota | Descrição |
+|-------------------------------|-------------------------------------------------------------|
+| <kbd>POST /auth/register</kbd> | Registra um usuário [detalhes de registro](#post-register-detail) |
+| <kbd>POST /auth/login</kbd> | Realiza o login/autentica o usuário [detalhes de login](#post-login-detail) |
+| <kbd>UPDATE /users/6643fcfdbf78a93ed89008cd</kbd> | Atualiza dados do usuário [detalhes de atualização](#update-user-detail) |
+| <kbd>GET /minicourses</kbd> | Retorna todos os minicursos [detalhes do minicurso](#get-minicourses-detail) |
+| <kbd>POST /subscriptions/minicourses/</kbd> | Inscreve-se em um minicurso [detalhes da inscrição](#post-subscriptions-detail) |
+| <kbd>DELETE /subscriptions/minicourses/66a98e1dd4ec13c270ad4b74</kbd> | Deleta uma inscrição [detalhes da inscrição deletada](#delete-subscriptions-detail) |
+
 
 <h3 id="post-register-detail">POST /auth/register</h3>
 
