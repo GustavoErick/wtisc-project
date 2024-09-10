@@ -12,7 +12,7 @@
 
 ![express][EXPRESS__BADGE]
 ![jwt][JWT]
-![javascript][JAVASCRIPT__BADGE]
+![nodejs][NODE__BADGE]
 ![prisma][PRISMA]
 ![postman][POSTMAN]
 ![visual_studio_code][VISUAL_STUDIO_CODE]
