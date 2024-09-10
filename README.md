@@ -272,31 +272,31 @@ Agradecimento especial a todos aqueles que contribuíram com este projeto!
       <a href="#">
         <img src="https://avatars.githubusercontent.com/u/105880814?v=4" width="100px;" alt="Beatriz Nascimento Picture"/><br>
         <sub>
-          <b>Beatriz Nascimento</b>
+          <a href="https://github.com/beatriznnascimento">Beatriz Nascimento</a>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/101434230?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://avatars.githubusercontent.com/u/101434230?v=4" width="100px;" alt="Foto do Samuel Nascimento"/><br>
         <sub>
-          <b>Samuel Nascimento</b>
+         <a href="https://github.com/samuelnasc-dev">Samuel Nascimento</a>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/101982315?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://avatars.githubusercontent.com/u/101982315?v=4" width="100px;" alt="Foto do Elysson Alves"/><br>
         <sub>
-          <b>Elysson Alves</b>
+          <a href="https://github.com/ElyssonAlvs">Elysson Alves</a>
         </sub>
       </a>
     </td>
         <td align="center">
       <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/85910011?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://avatars.githubusercontent.com/u/85910011?v=4" width="100px;" alt="Foto do Danilo Gomes"/><br>
         <sub>
-          <b>Danilo Gomes</b>
+          <a href="https://github.com/danilosgomes">Danilo Gomes</a>
         </sub>
       </a>
     </td>
