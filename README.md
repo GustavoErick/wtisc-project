@@ -9,7 +9,7 @@
 
 <h1
     align="center" style="font-weight: bold;">
-    WTISC Project 💻 - Back-end
+    WTISC Project 💻
 </h1>
 
 ![nodejs][NODE__BADGE]
