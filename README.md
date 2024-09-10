@@ -264,7 +264,7 @@ Agradecimento especial a todos aqueles que contribuíram com este projeto!
       <a href="#">
         <img src="https://avatars.githubusercontent.com/u/105515712?v=4" width="100px;" alt="Gustavo Erick Profile Picture"/><br>
         <sub>
-          <b>Gustavo Erick</b>
+          <a href="https://github.com/GustavoErick">Gustavo Erick</a>
         </sub>
       </a>
     </td>
