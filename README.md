@@ -4,17 +4,21 @@
 [PRISMA]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
 [VISUAL_STUDIO_CODE]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 [POSTMAN]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
+[MONGO]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
+[JEST]: https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white
 
 <h1
     align="center" style="font-weight: bold;">
     WTISC Project 💻 - Back-end
 </h1>
 
-![express][EXPRESS__BADGE]
-![jwt][JWT]
 ![nodejs][NODE__BADGE]
+![express][EXPRESS__BADGE]
 ![prisma][PRISMA]
+![mongodb][MONGODB]
+![jwt][JWT]
 ![postman][POSTMAN]
+![jest][JEST]
 ![visual_studio_code][VISUAL_STUDIO_CODE]
 
 <p align="center">
