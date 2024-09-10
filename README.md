@@ -15,7 +15,7 @@
 ![nodejs][NODE__BADGE]
 ![express][EXPRESS__BADGE]
 ![prisma][PRISMA]
-![mongodb][MONGODB]
+![mongodb][MONGO]
 ![jwt][JWT]
 ![postman][POSTMAN]
 ![jest][JEST]
