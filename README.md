@@ -25,7 +25,7 @@
   <a href="#tecnologias">Tecnologias Utilizadas</a> •
   <a href="#ferramentas">Ferramentas Utilizadas</a> •
   <a href="#started">Instalando e Executando</a> • 
-  <a href="prerequisites">Pré-requisitos</a> •
+  <a href="#prerequisites">Pré-requisitos</a> •
   <a href="#testando">API Endpoints</a> •
   <a href="#colab">Colaboradores</a> 
 </p>
