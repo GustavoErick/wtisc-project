@@ -50,6 +50,6 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 8800;
 
 // Inicia o servidor
-app.listen(8800, () => {
+app.listen(port, () => {
     console.log('Servidor rodando na porta ${port}');
 });
