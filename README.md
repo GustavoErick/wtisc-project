@@ -23,6 +23,7 @@
 
 <p align="center">
   <a href="#tecnologias">Tecnologias Utilizadas</a> •
+  <a href="#arquitetura">Arquitetura</a> •
   <a href="#ferramentas">Ferramentas Utilizadas</a> •
   <a href="#started">Instalando e Executando</a> • 
   <a href="#prerequisites">Pré-requisitos</a> •
@@ -81,6 +82,11 @@ Nos minicursos, são apresentados aos alunos/participantes várias técnicas e f
 ### 7. Automação 
 - **Puppeteer**: Biblioteca para controle de navegadores via código.
 - **Nodemon**: Ferramenta para reiniciar o servidor automaticamente em desenvolvimento.
+
+<h2 id="arquitetura"> Arquitetura</h2>
+
+![image](https://github.com/user-attachments/assets/404e310f-07f3-4864-a64d-eac1000c0f54)
+
 
 <h2 id="ferramentas"> Ferramentas Utilizadas</h2>
 
