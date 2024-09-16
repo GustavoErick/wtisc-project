@@ -51,37 +51,11 @@ export const getLectures = async (req, res) => {
 
 export const addLecture = async (req, res) => {
 
-    // VERIFICA SE O USUÁRIO É UM ADMIN
-
-
-
-    // RESGATA OS ATRIBUTOS DA REQUISIÇÃO
-    // const { 
-    //         title, 
-    //         description,
-    //         speaker,
-    //         date,
-    //         time,
-    //         location,
-    //         capacity,
-    //         certificateTemplate,
-    //     } = req.body;
 
     const body = req.body;
 
     try {
-        // const newlecture = await prisma.lecture.create({
-        //     data: {
-        //         title, 
-        //         description,
-        //         speaker,
-        //         date,
-        //         time,
-        //         location,
-        //         capacity,
-        //         certificateTemplate,
-        //     }
-        // });
+  
 
         const newLecture = await prisma.lecture.create({
           data: {
@@ -103,18 +77,6 @@ export const addLecture = async (req, res) => {
 
 export const updateLecture = async (req, res) => {
     const id = req.params.id;
-
-    // const { 
-    //     title, 
-    //     description,
-    //     prequisites,
-    //     instructor,
-    //     date,
-    //     time,
-    //     local,
-    //     capacity,
-    //     certificateTemplate,
-    // } = req.body;
 
     // PEGA TODOS OS INPUTS DA REQUISIÇÃO
     const {... inputs} = req.body;

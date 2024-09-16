@@ -5,14 +5,14 @@ import prisma from '../lib/prisma.js';
 export const register = async (req, res) => {
     
     //const {name, email, password} = req.body;
-    const {name, surname, cpf, email, password} = req.body;
+    const {name, surname, cpf, email, password} = req.body; 
     //console.log(req.body);
     try {
         // HASH PASSWORD
         const hashedPassword = await bcrypt.hash(password, 10); // salt = 10
         
         // CREATE A NEW USER AND SAVE TO DB
-        const newUser = await prisma.user.create({
+        const newUser = await prisma.user.create({ 
             data: {
                 name,
                 surname,
@@ -72,23 +72,13 @@ export const login = async(req, res) => {
         const token = jwt.sign(
             { 
               id:user.userId,
+              name:user.name,
               isAdmin: isAdmin,
             }, 
             process.env.JWT_SECRET_KEY, 
             { expiresIn: age }
         );
 
-        // const token = jwt.sign(
-        //     { 
-        //       //id:user.id,
-        //       id:user.userId,
-        //       isAdmin: false,
-        //     }, 
-        //     process.env.JWT_SECRET_KEY, 
-        //     { expiresIn: age }
-        // );
-
-        
         res.cookie("token", token, {
             httpOnly: true,
             //secure: true,
