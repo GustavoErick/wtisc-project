@@ -16,10 +16,16 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Configuração de CORS (deve vir antes das rotas)
+// app.use(cors({
+//     origin: 'http://localhost:5173', // Permite o front-end (Vite)
+//     methods: 'GET, POST, PUT, DELETE', // Métodos HTTP permitidos
+//     credentials: true, // Permite envio de cookies
+// }));
+
 app.use(cors({
-    origin: 'http://localhost:5173', // Permite o front-end (Vite)
-    methods: 'GET, POST, PUT, DELETE', // Métodos HTTP permitidos
-    credentials: true, // Permite envio de cookies
+    origin: ['http://localhost:5173', 'https://main--wtisc.netlify.app'], // Adicione seus domínios
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
 }));
 
 // Middlewares
@@ -41,7 +47,9 @@ app.get('/', (req, res) => {
     res.send('rota home funcionando!');
 });
 
+const port = process.env.PORT || 8800;
+
 // Inicia o servidor
 app.listen(8800, () => {
-    console.log('Servidor rodando na porta 8800');
+    console.log('Servidor rodando na porta ${port}');
 });
