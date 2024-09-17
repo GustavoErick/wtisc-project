@@ -8,7 +8,6 @@ import lectureRoute from './routes/lecture.route.js';
 import minicourseRoute from './routes/minicourse.route.js';
 import productRoute from './routes/product.route.js';
 import subscriptionRoute from './routes/subscription.route.js';
-import testRoute from './routes/test.route.js';
 import userRoute from './routes/user.route.js';
 
 const app = express();
@@ -31,7 +30,6 @@ app.use('/users', userRoute);
 app.use('/auth', authRoute);
 app.use('/minicourses', minicourseRoute);
 app.use('/lectures', lectureRoute);
-app.use('/test', testRoute);
 app.use('/subscriptions', subscriptionRoute);
 app.use('/products', productRoute);
 app.use('/certificates', certificateRoute);
