@@ -82,7 +82,11 @@ export const login = async(req, res) => {
             httpOnly: true,
             //secure: true,
             maxAge: age,
-        }).status(200).json({message: 'Login efetuado com sucesso!'});
+        }).status(200).json({message: 'Login efetuado com sucesso!', user: {
+            id: user.userId,
+            name: user.name,
+            // Inclua outros dados do usuário que desejar
+        }});
 
     } catch (error) {
         
