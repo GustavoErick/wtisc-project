@@ -3,15 +3,15 @@ import { register, login } from '../auth.controller.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; 
 
-// Mock do prisma e outros módulos
+// Mock do prisma
 jest.mock('../../lib/prisma.js', () => ({
   user: {
-    create: jest.fn(),  // Moca a função create 
+    create: jest.fn(),  
     findUnique: jest.fn(),
   },
 }));
 
-
+// primeiro bloco de testes
 describe('register', () => {
     let req, res;
 
@@ -125,6 +125,7 @@ describe('login', () => {
     it('deve realizar o login com sucesso e gerar um token', async () => {
         const mockUser = {
             userId: 1,
+            name: 'Beatriz',
             cpf: '12345678900',
             password: 'hashedpassword',
             Role: 'USER',
@@ -149,7 +150,13 @@ describe('login', () => {
             maxAge: 1000 * 60 * 60 * 24 * 7, 
         });
         expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Login efetuado com sucesso!' });
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Login efetuado com sucesso!', 
+            user: {
+                id: mockUser.userId,
+                name: mockUser.name,
+            },
+        });
     });
 
     it('deve retornar erro ao tentar realizar o login', async () => {
