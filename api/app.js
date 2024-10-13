@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 // }));
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://main--wtisc.netlify.app'], // Adicione seus domínios
+    origin: ['http://localhost:5173'], // Adicione seus domínios
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
@@ -51,5 +51,5 @@ const port = process.env.PORT || 8800;
 
 // Inicia o servidor
 app.listen(port, () => {
-    console.log('Servidor rodando na porta ${port}');
+    console.log('Servidor rodando na porta 8800');
 });
